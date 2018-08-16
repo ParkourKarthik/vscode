@@ -112,8 +112,8 @@ export class SettingsEditor2 extends BaseEditor {
 	) {
 		super(SettingsEditor2.ID, telemetryService, themeService);
 		this.delayedFilterLogging = new Delayer<void>(1000);
-		this.localSearchDelayer = new Delayer(100);
-		this.remoteSearchThrottle = new ThrottledDelayer(200);
+		this.localSearchDelayer = new Delayer(300);
+		this.remoteSearchThrottle = new ThrottledDelayer(400);
 		this.viewState = { settingsTarget: ConfigurationTarget.USER };
 		this.delayRefreshOnLayout = new Delayer(100);
 
@@ -907,7 +907,7 @@ export class SettingsEditor2 extends BaseEditor {
 	}
 
 	private layoutTrees(dimension: DOM.Dimension): void {
-		const listHeight = dimension.height - (DOM.getDomNodePagePosition(this.headerContainer).height + 11 /*padding*/);
+		const listHeight = dimension.height - (95 + 11 /* header height + padding*/);
 		const settingsTreeHeight = listHeight - 14;
 		this.settingsTreeContainer.style.height = `${settingsTreeHeight}px`;
 		this.settingsTree.layout(settingsTreeHeight, 800);
